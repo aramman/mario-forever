@@ -1,0 +1,15 @@
+[bastion]
+nginxhost ansible_host=${bastion-ip} ansible_user=ubuntu  # ${bastion-id}
+
+[bastion:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[appservers]
+%{ for index, dns in private-dns ~}
+${dns} ansible_host=${private-ip[index]} # ${private-id[index]}
+%{ endfor ~}
+
+[appservers:vars]
+
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p -q ubuntu@${bastion-ip} -i ./files/terraform-key-pair.pem"'
+

@@ -1,0 +1,47 @@
+---
+- hosts: appservers
+  become: true
+  tasks:
+    - name: installing musts
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+    - name: setting gpg
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    - name: adding repo
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+    - name: installing docker
+      apt:
+        name: "{{item}}"
+        state: latest
+        update_cache: yes
+      loop:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - python3-docker
+    - name: is docker started ?
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Getting mario
+      docker_image:
+        name: bharathshetty4/supermario
+        source: pull
+
+    - name: Running Mario 
+      shell: docker run -d -p 8600:8080 bharathshetty4/supermario
+
