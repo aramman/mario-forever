@@ -1,17 +1,21 @@
+#aws access key
 variable "aws_access_key" {
-    default = "AKIA3DFA6QPFJW45WMXT"
+    default = "yourawskey"
 }
+#aws secret key
 variable "aws_secret_key" {
-    default = "ywZZfeqi3toWg6mQiClelj0DhVuYL8FcTpzpHz32"
+    default = "youtsecretkey"
 }
+
+#Ws region 
 variable "region" {
     default = "eu-west-3"
 }
-
+#aws ami 
 variable "aws_ami" {
     default = "ami-0f7cd40eac2214b37"
 }
-
+######Terraform will generate new ssh keys and launch new instances with new key so no need to specify your keys 
 variable "talkdesk_keypair" {
   type        = string
   default     = "terraform-key-pair"
