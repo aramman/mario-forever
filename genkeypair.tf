@@ -8,6 +8,10 @@ resource "aws_key_pair" "generated_key" {
   key_name   = var.talkdesk_keypair
   public_key = tls_private_key.dev_key.public_key_openssh
 
+  provisioner "local-exec" {    #rming last key
+    command = "rm -rf files/'${var.talkdesk_keypair}'.pem"
+  }
+
   provisioner "local-exec" {    # Generate "terraform-key-pair.pem" in current directory
     command = "echo '${tls_private_key.dev_key.private_key_pem}' > files/'${var.talkdesk_keypair}'.pem"
   }

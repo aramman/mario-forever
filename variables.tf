@@ -1,13 +1,16 @@
 variable "aws_access_key" {
-    default = "youraccesskey"
+    default = "AKIA3DFA6QPFJW45WMXT"
 }
 variable "aws_secret_key" {
-    default = "yoursecretkey"
+    default = "ywZZfeqi3toWg6mQiClelj0DhVuYL8FcTpzpHz32"
 }
 variable "region" {
-    default = "eu-central-1"
+    default = "eu-west-3"
 }
 
+variable "aws_ami" {
+    default = "ami-0f7cd40eac2214b37"
+}
 
 variable "talkdesk_keypair" {
   type        = string
