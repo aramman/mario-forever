@@ -7,5 +7,5 @@ The template run aws components in eu-west3 region , default ami is ubuntu.
 After the run terraform will , if everything will work as it was expected , will output 3 ips . You can just copy-paste nginx (public ip) ip in your browser.
 
 
-DISCLAIMER
+DISCLAIMER:
 All coincidences are random !
